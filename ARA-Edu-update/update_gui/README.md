@@ -4,7 +4,17 @@
            margin-left: auto;
            margin-right: auto;
            width: 50%;"
-    src="./logo.png" alt="ara_logo"/>
+    src="../../logo/logo_black.png#gh-light-mode-only" alt="ara_logo"/>
+</p>
+
+<p align="center">
+  <img style="
+           display: block; 
+           margin-left: auto;
+           margin-right: auto;
+           width: 50%;
+  }"
+    src="../../logo/logo_white.png#gh-dark-mode-only" alt="ara_logo"/>
 </p>
 
 <h1 style="text-align: center;">Приложение для обновления</h1>
