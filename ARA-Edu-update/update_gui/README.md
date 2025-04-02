@@ -28,3 +28,23 @@
 - если указанная выше команда выводит "i686" в консоль, необходимо скачать приложение из папки "linux32"
 - если указанная выше команда выводит "x86_64" в консоль, необходимо скачать приложение из папки "linux64"
 
+### Решение проблемы в Linux  
+
+Если при запуске приложения под **Linux** возникает ошибка ``` cannot open shared object file: No such file or directory ```  
+необходимо установить следующие библиотеки:  
+
+- **Для Ubuntu, Astra, AltOS**:  
+  ```sh
+  sudo apt install libxcrypt-compat libnsl
+  ```  
+- **Для RED OS, AlterOS**:  
+  ```sh
+  sudo yum install libxcrypt-compat libnsl
+  ```
+
+Если при запуске приложения под **Linux** возникает ошибка ``` bash ./update_gui_linux*.run: отказано в доступе ```  
+необходимо сделать следующие:
+  ```sh
+  sudo chmod +x ./update_gui*
+  ```  
+
