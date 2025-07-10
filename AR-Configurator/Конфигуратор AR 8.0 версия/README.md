@@ -17,16 +17,17 @@
     src="../../logo/logo_white.png#gh-dark-mode-only" alt="ara_logo"/>
 </p>
 
-<h1 style="text-align: center;">AR Configurator</h1>
+<h1 style="text-align: center;">AR Configurator 8.0</h1>
 
 ## [Ссылка на скачивание](https://disk.360.yandex.ru/d/jVx9sOyxMU1bdA)
 
 ## Совместимость с операционными системами
 - Windows 10/11
-- Mac OS 
 - Ubuntu
+- Astra Linux
 - Alter Linux
 - RedOS
+- Calculate Linux
 
 ## Установка Конфигуратора
 ### Windows
