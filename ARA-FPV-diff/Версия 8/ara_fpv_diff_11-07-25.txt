@@ -1,0 +1,163 @@
+
+
+# diff
+
+# version
+# INAV/MATEKF405 8.0.0 Apr  4 2025 / 16:33:57 (7bd2192a) 
+# GCC-13.2.1 20231009
+
+# start the command batch
+batch start
+
+# resources
+
+# Timer overrides
+
+# Outputs [servo]
+
+# safehome
+
+# Fixed Wing Approach
+
+# geozone
+
+# geozone vertices
+
+# features
+feature LED_STRIP
+feature PWM_OUTPUT_ENABLE
+feature OSD
+
+# beeper
+
+# blackbox
+blackbox -NAV_ACC
+blackbox NAV_POS
+blackbox NAV_PID
+blackbox MAG
+blackbox ACC
+blackbox ATTI
+blackbox RC_DATA
+blackbox RC_COMMAND
+blackbox MOTORS
+blackbox -GYRO_RAW
+blackbox -PEAKS_R
+blackbox -PEAKS_P
+blackbox -PEAKS_Y
+blackbox SERVOS
+
+# Receiver: Channel map
+
+# Ports
+serial 0 0 115200 115200 0 115200
+serial 5 64 115200 115200 0 115200
+
+# LEDs
+
+# LED color
+
+# LED mode_color
+
+# Modes [aux]
+aux 0 0 0 1700 2100
+aux 1 1 1 900 1300
+
+# Adjustments [adjrange]
+
+# Receiver rxrange
+
+# temp_sensor
+
+# Mission Control Waypoints [wp]
+#wp 0 invalid
+
+# OSD [osd_layout]
+
+# Programming: logic
+
+# Programming: global variables
+
+# Programming: PID controllers
+
+# OSD: custom elements
+
+# master
+set gyro_main_lpf_hz = 90
+set dynamic_gyro_notch_q = 150
+set dynamic_gyro_notch_min_hz = 150
+set setpoint_kalman_q = 200
+set gyro_zero_x = -9
+set gyro_zero_y = -11
+set gyro_zero_z = 4
+set ins_gravity_cmss =  999.647
+set acc_hardware = ICM42605
+set acczero_x = 2
+set acczero_y = 2
+set acczero_z = 52
+set accgain_x = 4081
+set accgain_y = 4087
+set accgain_z = 4087
+set align_mag = CW270FLIP
+set mag_hardware = NONE
+set baro_hardware = BMP280
+set serialrx_provider = IBUS
+set serialrx_inverted = ON
+set blackbox_rate_denom = 2
+set motor_pwm_protocol = STANDARD
+set failsafe_procedure = DROP
+set align_board_yaw = 1800
+set vbat_scale = 850
+set current_meter_scale = 62
+set servo_pwm_rate = 330
+set applied_defaults = 5
+set rpm_gyro_filter_enabled = ON
+set airmode_type = THROTTLE_THRESHOLD
+set fw_autotune_max_rate_deflection = 80
+
+# control_profile
+control_profile 1
+
+set mc_p_pitch = 50
+set mc_i_pitch = 35
+set mc_d_pitch = 35
+set mc_p_roll = 50
+set mc_i_roll = 35
+set mc_d_roll = 30
+set tpa_rate = 20
+set tpa_breakpoint = 1200
+set rc_expo = 75
+set rc_yaw_expo = 75
+set roll_rate = 70
+set pitch_rate = 70
+set yaw_rate = 60
+
+# mixer_profile
+mixer_profile 1
+
+set motor_direction_inverted = ON
+set model_preview_type = 3
+set motorstop_on_low = OFF
+
+# Mixer: motor mixer
+
+mmix reset
+
+mmix 0  1.000 -1.000  1.000 -1.000
+mmix 1  1.000  1.000 -1.000 -1.000
+mmix 2  1.000 -1.000 -1.000  1.000
+mmix 3  1.000  1.000  1.000  1.000
+
+# Mixer: servo mixer
+
+# battery_profile
+battery_profile 1
+
+set throttle_idle =  5.000
+
+# save configuration
+save
+
+# end the command batch
+batch end
+
+# 
