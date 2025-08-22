@@ -28,7 +28,6 @@ def OnMes0(mes):
 
     with open("messages_log.txt", "a") as file:
         file.write(log_message)
-    # print(log_message)
     
 #Функция поиска маркера
 def SearchForArucos():
@@ -44,17 +43,17 @@ def SearchForArucos():
 def AvoidAruco():
     client.setDiod(0.0, 0.0, 255.0)
     client.setVelXYYaw(0, 0, -0.5)
-    time.sleep(6)
+    time.sleep(5)
     client.setVelXYYaw(0, 0, 0)
 
 # Выравнивание относительно маркера
 def ArucoRegulation():
     client.setDiod(0.0, 255.0, 0.0)
-    pid_pitch= PID(1.5, 0.002, 2.5)
-    pid_roll = PID(1.5, 0.002, 2.5)
+    pid_pitch= PID(1.0, 0.002, 0.2)
+    pid_roll = PID(1.0, 0.002, 0.2)
     pid_yaw = PID(0.6, 0.0, 0.5)
 
-    distance = 0.7
+    distance = 1.0
 
     pitch_error = 0.0
     roll_error = 0.0
@@ -63,8 +62,6 @@ def ArucoRegulation():
 
     last_height_regulation_time = 0
     last_yaw_regulation_time = 0
-
-
 
     while True:
         try:
@@ -79,8 +76,7 @@ def ArucoRegulation():
 
 
                 pitch_error = distance_to_marker - distance
-                
-                #print(f"Marker position: roll_error = {roll_error}, distance_error = {pitch_error}, height_error = {height_error}")
+                print(f"Дистанция до маркера: {distance_to_marker}")
                 current_time = time.time()
 
                 delta_time_height = current_time - last_height_regulation_time
@@ -90,22 +86,19 @@ def ArucoRegulation():
                 print(height_error)
                 if abs(height_error) > 0.2 and delta_time_height > 5.0:
                     print("height correction")
-                    # HeightRegulation(height_error)
                     last_height_regulation_time = time.time()
 
                 
                 DefaultRegulation(pitch_error, roll_error, pid_pitch, pid_roll, yaw_error, pid_yaw)
                 previous_yaw = yaw_error
 
-                if abs(height_error) < 0.1 and abs(pitch_error) < 0.15 and abs(roll_error) < 0.15 and abs(yaw_error) < 0.15:
+                if abs(height_error) < 0.1 and abs(pitch_error) < 0.15 and abs(roll_error) < 0.15:
                     print("Выравнивание произошло успешно")
                     sucess_flag = 1
                     break
 
             else: 
                 print("Dont see aruco")
-                #print(f"Last position marker: roll_error = {roll_error}, distance_error = {pitch_error}, height_error = {height_error}")
-
                 DefaultRegulation(pitch_error, roll_error, pid_pitch, pid_roll, 0, pid_yaw)
                 previous_yaw = yaw_error
 
@@ -143,7 +136,7 @@ def DefaultRegulation(pitch_error, roll_error, pid_p: PID, pid_r: PID, yaw_error
         PID_YAW = 0
 
     print(f"PID Control: PITCH={PID_PITCH}, ROLL={PID_ROLL}, YAW = {PID_YAW}")
-    client.setVelXYYaw(PID_PITCH, PID_ROLL, PID_YAW)   
+    client.setVelXYYaw(PID_PITCH, PID_ROLL, 0)   
 
 # Выравнивание по высоте
 def HeightRegulation(height_error):
