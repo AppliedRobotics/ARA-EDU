@@ -4,7 +4,7 @@
            margin-left: auto;
            margin-right: auto;
            width: 50%;"
-    src="../logo/logo_black.png#gh-light-mode-only" alt="ara_logo"/>
+    src="../../logo/logo_black.png#gh-light-mode-only" alt="ara_logo"/>
 </p>
 
 <p align="center">
@@ -14,10 +14,10 @@
            margin-right: auto;
            width: 50%;
   }"
-    src="../logo/logo_white.png#gh-dark-mode-only" alt="ara_logo"/>
+    src="../../logo/logo_white.png#gh-dark-mode-only" alt="ara_logo"/>
 </p>
 
-<h1 style="text-align: center;">Примеры программирования FC-ESP32-HAT</h1>
+<h1 style="text-align: center;">Примеры программирования ARA-Mini</h1>
 
 ## Описание примеров
 ### Take off and landing
