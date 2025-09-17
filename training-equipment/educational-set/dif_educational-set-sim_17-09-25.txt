@@ -1,0 +1,231 @@
+
+
+# diff all 
+
+# version
+# INAV/MATEKF405 7.1.0 Dec  2 2024 / 15:22:24 (c98ff6bc)
+# GCC-10.3.1 20210824 (release)
+
+# start the command batch
+batch start
+
+# reset configuration to default settings
+defaults noreboot
+
+# resources
+
+# Timer overrides
+
+# Outputs [servo]
+
+# safehome
+
+# Fixed Wing Approach
+
+# features
+feature LED_STRIP
+feature BLACKBOX
+feature PWM_OUTPUT_ENABLE
+feature OSD
+
+# beeper
+
+# blackbox
+blackbox NAV_ACC
+blackbox NAV_POS
+blackbox NAV_PID
+blackbox MAG
+blackbox ACC
+blackbox ATTI
+blackbox RC_DATA
+blackbox RC_COMMAND
+blackbox MOTORS
+blackbox GYRO_RAW
+blackbox PEAKS_R
+blackbox PEAKS_P
+blackbox PEAKS_Y
+
+# Receiver: Channel map
+
+# Ports
+serial 0 0 115200 115200 0 115200
+serial 1 2 115200 115200 0 115200
+serial 2 1 115200 115200 0 115200
+serial 4 1 115200 115200 0 115200
+serial 5 64 115200 115200 0 115200
+
+# LEDs
+led 0 0,0::L:5
+led 1 1,0::L:5
+led 2 2,0::L:5
+led 3 3,0::L:5
+led 4 4,0::L:5
+led 5 5,0::L:5
+
+# LED color
+
+# LED mode_color
+
+# Modes [aux]
+aux 0 0 0 1700 2100
+aux 1 1 2 900 1500
+aux 2 11 1 1300 2100
+aux 3 3 1 1300 2100
+aux 4 5 1 1300 2100
+aux 5 33 1 1300 2100
+
+# Adjustments [adjrange]
+
+# Receiver rxrange
+
+# temp_sensor
+
+# Mission Control Waypoints [wp]
+#wp 0 invalid
+
+# OSD [osd_layout]
+
+# Programming: logic
+
+# Programming: global variables
+
+# Programming: PID controllers
+
+# OSD: custom elements
+
+# master
+set looptime = 500
+set gyro_main_lpf_hz = 110
+set gyro_main_lpf_type = PT1
+set gyro_use_dyn_lpf = ON
+set gyro_dyn_lpf_min_hz = 85
+set gyro_dyn_lpf_max_hz = 300
+set gyro_dyn_lpf_curve_expo = 3
+set dynamic_gyro_notch_q = 250
+set dynamic_gyro_notch_min_hz = 100
+set setpoint_kalman_q = 200
+set gyro_zero_x = 1
+set gyro_zero_y = -13
+set gyro_zero_z = -2
+set ins_gravity_cmss =  996.886
+set acc_hardware = ICM42605
+set acczero_x = 1
+set acczero_y = 1
+set acczero_z = 51
+set accgain_x = 4081
+set accgain_y = 4091
+set accgain_z = 4085
+set rangefinder_hardware = MSP
+set opflow_hardware = MSP
+set opflow_scale =  3.000
+set align_mag = CW270FLIP
+set mag_hardware = NONE
+set magzero_x = 188
+set magzero_y = 501
+set magzero_z = 1012
+set maggain_x = 1268
+set maggain_y = 1162
+set maggain_z = 1805
+set baro_hardware = BMP280
+set serialrx_provider = IBUS
+set serialrx_inverted = ON
+set blackbox_rate_denom = 5
+set motor_pwm_protocol = DSHOT300
+set failsafe_procedure = DROP
+set align_board_yaw = 1800
+set vbat_scale = 880
+set current_meter_scale = 54
+set servo_pwm_rate = 330
+set applied_defaults = 2
+set airmode_type = THROTTLE_THRESHOLD
+set inav_allow_dead_reckoning = ON
+set inav_max_surface_altitude = 300
+set inav_w_z_surface_p =  10.000
+set inav_w_z_surface_v =  10.000
+set inav_w_z_baro_p =  0.500
+set nav_mc_althold_throttle = MID_STICK
+set nav_user_control_mode = CRUISE
+set nav_max_terrain_follow_alt = 200
+set debug_mode = FLOW_RAW
+
+# mixer_profile
+mixer_profile 1
+
+set motor_direction_inverted = ON
+set model_preview_type = 3
+
+# Mixer: motor mixer
+
+mmix reset
+
+mmix 0  1.000 -1.000  1.000 -1.000
+mmix 1  1.000  1.000 -1.000 -1.000
+mmix 2  1.000 -1.000 -1.000  1.000
+mmix 3  1.000  1.000  1.000  1.000
+
+# Mixer: servo mixer
+
+# mixer_profile
+mixer_profile 2
+
+
+# Mixer: motor mixer
+
+# Mixer: servo mixer
+
+# profile
+profile 1
+
+set dterm_lpf_type = PT3
+set nav_mc_pos_z_p = 80
+set nav_mc_vel_z_p = 165
+set nav_mc_vel_z_i = 35
+set nav_mc_vel_z_d = 20
+set nav_mc_pos_xy_p = 90
+set nav_mc_vel_xy_p = 70
+set nav_mc_vel_xy_i = 50
+set nav_mc_vel_xy_d = 40
+set d_boost_min =  1.000
+set d_boost_max =  1.000
+set antigravity_gain =  2.000
+set antigravity_accelerator =  5.000
+set smith_predictor_delay =  1.500
+set tpa_rate = 20
+set tpa_breakpoint = 1200
+set rc_expo = 75
+set rc_yaw_expo = 75
+set roll_rate = 70
+set pitch_rate = 70
+set yaw_rate = 60
+
+# profile
+profile 2
+
+
+# profile
+profile 3
+
+
+# battery_profile
+battery_profile 1
+
+set throttle_idle =  10.000
+set nav_mc_hover_thr = 1500
+
+# battery_profile
+battery_profile 2
+
+
+# battery_profile
+battery_profile 3
+
+
+# restore original profile selection
+mixer_profile 1
+profile 1
+battery_profile 1
+
+# save configuration
+save
+
+# 
