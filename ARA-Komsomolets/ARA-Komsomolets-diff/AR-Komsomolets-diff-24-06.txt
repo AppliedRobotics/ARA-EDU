@@ -1,0 +1,208 @@
+
+
+# diff
+
+# version
+# INAV/MATEKF405 8.0.0 Jun 20 2025 / 16:42:23 (82801c7c) 
+# GCC-13.2.1 20231009
+
+# start the command batch
+batch start
+
+# resources
+
+# Timer overrides
+
+# Outputs [servo]
+
+# safehome
+
+# Fixed Wing Approach
+
+# geozone
+
+# geozone vertices
+
+# features
+feature GPS
+feature LED_STRIP
+feature PWM_OUTPUT_ENABLE
+feature OSD
+
+# beeper
+
+# blackbox
+blackbox -NAV_ACC
+blackbox NAV_POS
+blackbox NAV_PID
+blackbox MAG
+blackbox ACC
+blackbox ATTI
+blackbox RC_DATA
+blackbox RC_COMMAND
+blackbox MOTORS
+blackbox -GYRO_RAW
+blackbox -PEAKS_R
+blackbox -PEAKS_P
+blackbox -PEAKS_Y
+blackbox SERVOS
+
+# Receiver: Channel map
+
+# Ports
+serial 0 2 115200 115200 0 115200
+serial 2 1 115200 115200 0 115200
+
+# LEDs
+led 0 0,0::CW:0
+led 1 2,0::AT:10
+led 2 4,0::CW:0
+led 3 6,0::AT:10
+led 4 1,2::C:11
+led 5 2,2::C:2
+led 6 3,2::C:2
+led 7 4,2::C:2
+led 8 5,2::C:2
+led 9 1,3::C:1
+led 10 2,3::C:1
+led 11 3,3::C:1
+led 12 4,3::C:1
+led 13 5,3::C:1
+led 14 1,4::C:1
+led 15 2,4::C:1
+led 16 3,4::C:1
+led 17 4,4::C:1
+led 18 5,4::C:1
+led 19 1,5::C:1
+led 20 2,5::C:1
+led 21 3,5::C:1
+led 22 4,5::C:1
+led 23 5,5::C:1
+led 24 1,6::C:1
+led 25 2,6::C:1
+led 26 3,6::C:1
+led 27 4,6::C:1
+led 28 5,6::C:1
+
+# LED color
+color 0 0,255,30
+
+# LED mode_color
+mode_color 6 0 3
+mode_color 6 1 6
+
+# Modes [aux]
+aux 0 0 0 1300 2100
+aux 1 1 0 900 2100
+aux 2 11 1 1700 2100
+aux 3 3 1 1250 2100
+aux 4 33 1 1250 2100
+aux 5 60 3 1300 2100
+aux 6 15 3 1300 2100
+aux 7 47 2 1400 2100
+aux 8 48 2 1400 2100
+aux 9 57 2 1400 2100
+
+# Adjustments [adjrange]
+
+# Receiver rxrange
+
+# temp_sensor
+
+# Mission Control Waypoints [wp]
+#wp 0 invalid
+
+# OSD [osd_layout]
+
+# Programming: logic
+
+# Programming: global variables
+
+# Programming: PID controllers
+
+# OSD: custom elements
+
+# master
+set gyro_dyn_lpf_min_hz = 100
+set gyro_dyn_lpf_max_hz = 250
+set gyro_dyn_lpf_curve_expo = 4
+set gyro_zero_x = 7
+set gyro_zero_y = -8
+set gyro_zero_z = -4
+set ins_gravity_cmss =  976.134
+set acc_hardware = ICM42605
+set acczero_x = 4
+set acczero_y = 3
+set acczero_z = 5
+set accgain_x = 4089
+set accgain_y = 4084
+set accgain_z = 4079
+set rangefinder_hardware = MSP
+set opflow_hardware = MSP
+set opflow_scale =  4.844
+set align_mag = CW270FLIP
+set mag_hardware = QMC5883
+set magzero_x = 690
+set magzero_y = 260
+set magzero_z = 1733
+set maggain_x = 555
+set maggain_y = 788
+set maggain_z = 685
+set align_mag_pitch = 1800
+set align_mag_yaw = 2700
+set baro_hardware = MS5607
+set serialrx_provider = IBUS
+set blackbox_rate_denom = 2
+set motor_pwm_protocol = DSHOT300
+set align_board_roll = -1800
+set vbat_scale = 422
+set applied_defaults = 1
+set inav_allow_dead_reckoning = ON
+set debug_mode = FLOW_RAW
+set pinio_box1 = 47
+set pinio_box2 = 48
+set pinio_box3 = 57
+set pinio_box4 = 58
+
+# control_profile
+control_profile 1
+
+set mc_p_pitch = 30
+set mc_i_pitch = 12
+set mc_p_roll = 30
+set mc_i_roll = 12
+set mc_p_yaw = 50
+set mc_i_yaw = 25
+set max_angle_inclination_rll = 150
+set max_angle_inclination_pit = 150
+set rc_expo = 40
+set yaw_rate = 10
+
+# mixer_profile
+mixer_profile 1
+
+set model_preview_type = 3
+
+# Mixer: motor mixer
+
+mmix reset
+
+mmix 0  1.000 -1.000 -1.000  1.000
+mmix 1  1.000 -1.000  1.000 -1.000
+mmix 2  1.000  1.000  1.000  1.000
+mmix 3  1.000  1.000 -1.000 -1.000
+
+# Mixer: servo mixer
+
+# battery_profile
+battery_profile 1
+
+set throttle_idle =  5.000
+
+# save configuration
+save
+
+# end the command batch
+batch end
+
+# 
