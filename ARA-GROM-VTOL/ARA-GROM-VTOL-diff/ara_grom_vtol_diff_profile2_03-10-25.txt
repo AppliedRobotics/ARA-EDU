@@ -1,0 +1,181 @@
+
+Entering CLI Mode, type 'exit' to return, or 'help'
+
+# diff
+
+# version
+# INAV/MATEKF405 8.0.0 Jul 14 2025 / 10:58:46 (81a58dd1) 
+# GCC-13.2.1 20231009
+
+# start the command batch
+batch start
+
+# resources
+
+# Timer overrides
+timer_output_mode 0 MOTORS
+
+# Outputs [servo]
+servo 1 1000 2000 1500 -100
+
+# safehome
+
+# Fixed Wing Approach
+
+# geozone
+
+# geozone vertices
+
+# features
+feature LED_STRIP
+feature BLACKBOX
+feature PWM_OUTPUT_ENABLE
+feature OSD
+
+# beeper
+
+# blackbox
+blackbox NAV_ACC
+blackbox NAV_POS
+blackbox NAV_PID
+blackbox MAG
+blackbox ACC
+blackbox ATTI
+blackbox RC_DATA
+blackbox RC_COMMAND
+blackbox MOTORS
+blackbox GYRO_RAW
+blackbox PEAKS_R
+blackbox PEAKS_P
+blackbox PEAKS_Y
+blackbox SERVOS
+
+# Receiver: Channel map
+
+# Ports
+serial 1 2 115200 115200 0 115200
+
+# LEDs
+led 0 0,0::COE:8
+led 1 1,0::COE:8
+led 2 2,0::COE:8
+led 3 3,0::COE:8
+led 4 4,0::COE:8
+led 5 5,0::COE:8
+
+# LED color
+
+# LED mode_color
+
+# Modes [aux]
+aux 0 0 0 1700 2100
+aux 1 1 2 900 1650
+aux 2 62 1 1300 2100
+aux 3 63 1 1300 1700
+
+# Adjustments [adjrange]
+
+# Receiver rxrange
+
+# temp_sensor
+
+# Mission Control Waypoints [wp]
+#wp 0 invalid
+
+# OSD [osd_layout]
+
+# Programming: logic
+
+# Programming: global variables
+
+# Programming: PID controllers
+
+# OSD: custom elements
+
+# master
+set gyro_main_lpf_hz = 110
+set gyro_dyn_lpf_min_hz = 85
+set gyro_dyn_lpf_max_hz = 300
+set gyro_dyn_lpf_curve_expo = 3
+set dynamic_gyro_notch_q = 250
+set dynamic_gyro_notch_min_hz = 100
+set setpoint_kalman_q = 200
+set gyro_zero_x = 28
+set gyro_zero_y = -33
+set ins_gravity_cmss =  999.143
+set acc_hardware = ICM42605
+set acczero_x = 1
+set acczero_y = 1
+set acczero_z = 51
+set accgain_x = 4081
+set accgain_y = 4091
+set accgain_z = 4085
+set opflow_scale =  3.000
+set align_mag = CW270FLIP
+set mag_hardware = NONE
+set magzero_x = 188
+set magzero_y = 501
+set magzero_z = 1012
+set maggain_x = 1268
+set maggain_y = 1162
+set maggain_z = 1805
+set baro_hardware = BMP280
+set serialrx_inverted = ON
+set blackbox_rate_denom = 5
+set motor_pwm_protocol = STANDARD
+set failsafe_procedure = DROP
+set align_board_yaw = 1800
+set vbat_scale = 880
+set current_meter_scale = 54
+set servo_pwm_rate = 330
+set applied_defaults = 2
+set gps_ublox_use_glonass = ON
+set airmode_type = THROTTLE_THRESHOLD
+set inav_allow_dead_reckoning = ON
+set inav_max_surface_altitude = 300
+set inav_w_z_surface_p =  10.000
+set inav_w_z_surface_v =  10.000
+set inav_w_z_baro_p =  0.500
+set nav_mc_althold_throttle = MID_STICK
+set nav_user_control_mode = CRUISE
+set nav_max_terrain_follow_alt = 200
+set debug_mode = FLOW_RAW
+
+# control_profile
+control_profile 2
+
+set mc_p_pitch = 30
+set mc_cd_pitch = 40
+
+# mixer_profile
+mixer_profile 2
+
+set motor_direction_inverted = ON
+set model_preview_type = 3
+set motorstop_on_low = OFF
+set mixer_pid_profile_linking = ON
+
+# Mixer: motor mixer
+
+mmix reset
+
+mmix 0  1.000 -1.000  1.000 -1.000
+mmix 1  1.000  1.000 -1.000 -1.000
+mmix 2  1.000 -1.000 -1.000  1.000
+mmix 3  1.000  1.000  1.000  1.000
+
+# Mixer: servo mixer
+
+# battery_profile
+battery_profile 1
+
+set throttle_idle =  5.000
+set nav_mc_hover_thr = 1500
+
+# save configuration
+save
+
+# end the command batch
+batch end
+
+# 
