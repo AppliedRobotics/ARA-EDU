@@ -30,7 +30,7 @@
 #define CAM_CSI_2 19
 #define ADC_PIN 33
 
-extern MSP msp;
+MSP msp;
 
 // Настройки Wi-Fi точки доступа
 const char* ap_ssid = "ESP32-Camera-AP";
@@ -81,13 +81,6 @@ void setup() {
   } else {
     Serial.println("Camera Init Success");
   }
- 
-  // Настройка ориентации камеры
-  // sensor_t *s = esp_camera_sensor_get();
-  // if(s) {
-    // s->set_vflip(s, 1);
-    // s->set_hmirror(s, 1);
-  // }
  
   // Создание Wi-Fi точки доступа
   createWiFiAP();
@@ -151,40 +144,11 @@ void msp_task() {
     }
     rc_motors.channelValue[0] = 1500; // Roll neutral
     rc_motors.channelValue[1] = 1500; // Pitch neutral
-    // rc_motors.channelValue[2] = 1000; // Throttle off
     rc_motors.channelValue[3] = 1500; // Yaw neutral
     msp.command(MSP_SET_RAW_RC, &rc_motors, sizeof(rc_motors));
     lastRCWrite = millis();
   }
   if (millis() - lastIMURead >= IMU_READ_INTERVAL) {
-    // msp_rc_t rc;
-    // if (msp.request(MSP_RC, &rc, sizeof(rc))) {
-    //   uint16_t roll = rc.channelValue[0];
-    //   uint16_t pitch = rc.channelValue[1];
-    //   uint16_t yaw = rc.channelValue[2];
-    //   uint16_t throttle = rc.channelValue[3];
-    //   uint16_t arm = rc.channelValue[4];
-     
-    //   // Обновляем структуру IMU данных
-    //   currentIMU.accel_x = map(roll, 1000, 2000, -1000, 1000) / 1000.0;
-    //   currentIMU.accel_y = map(pitch, 1000, 2000, -1000, 1000) / 1000.0;
-    //   currentIMU.accel_z = map(throttle, 1000, 2000, 0, 2000) / 1000.0;
-    //   currentIMU.gyro_x = map(yaw, 1000, 2000, -1000, 1000) / 1000.0;
-    //   currentIMU.timestamp = millis();
-     
-    //   // Управление светодиодом по каналу arm
-    //   digitalWrite(LED_PIN, arm > 1500);
-     
-    //   // Вывод в Serial для отладки
-    //   static unsigned long lastDebug = 0;
-    //   if (millis() - lastDebug > 1000) {
-    //     Serial.printf("RC - Roll: %d, Pitch: %d, Yaw: %d, Throttle: %d, Arm: %d\n",
-    //                  roll, pitch, yaw, throttle, arm);
-    //     lastDebug = millis();
-    //   }
-    // }
-   
-    // Попробуем получить сырые данные акселерометра если доступно
     msp_raw_imu_t raw_imu;
     if (msp.request(MSP_RAW_IMU, &raw_imu, sizeof(raw_imu))) {
       currentIMU.accel_x = raw_imu.acc[0] / 512.0; // Пример масштабирования
@@ -354,7 +318,7 @@ void handleStreaming() {
   if (written != fb->len) {
     Serial.println("Stream write failed");
     // streamingActive = false;
-    // streamClient.stop();
+    // streamClient.stop(S);
   }
 }
 
@@ -365,9 +329,6 @@ void sendIMUData(WiFiClient &client) {
   doc["accel_x"] = currentIMU.accel_x;
   doc["accel_y"] = currentIMU.accel_y;
   doc["accel_z"] = currentIMU.accel_z;
-  // doc["gyro_x"] = currentIMU.gyro_x;
-  // doc["gyro_y"] = currentIMU.gyro_y;
-  // doc["gyro_z"] = currentIMU.gyro_z;
   doc["sonar"] = currentIMU.sonar;
   doc["timestamp"] = currentIMU.timestamp;
   String response;
@@ -389,13 +350,9 @@ void handleCommand(WiFiClient &client, String req) {
 
   bool success = false;
   if (type == "blink") {
-    // Отправка команды на мигание LED на полетнике
     blink_enabled = 1;
-    // Serial.println("Blink command sent");
     success = true;
   } else if (type == "motors") {
-    // Включение моторов на минимальную мощность
-    // Arm on, throttle minimal (например, 1100)
     motor_enabled = 1;
     success = true;
   }
@@ -478,11 +435,11 @@ void sendHTML(WiFiClient &client) {
             statusElement.innerHTML = '<span class="status">Stream started...</span>';
            
             // Периодическое обновление для поддержания соединения
-            streamInterval = setInterval(() => {
-                if (streamActive) {
-                    videoElement.src = videoElement.src.split('?')[0] + '?t=' + new Date().getTime();
-                }
-            }, 30000); // Обновлять каждые 30 секунд
+            // streamInterval = setInterval(() => {
+            //     if (streamActive) {
+            //         videoElement.src = videoElement.src.split('?')[0] + '?t=' + new Date().getTime();
+            //     }
+            // }, 30000); // Обновлять каждые 30 секунд
         }
        
         // Функция для остановки видеопотока
@@ -531,16 +488,6 @@ void sendHTML(WiFiClient &client) {
                     statusElement.innerHTML = '<span class="error">Command failed</span>';
                 });
         }
-       
-        // Обработка ошибок видео потока
-        document.getElementById('video-stream').onerror = function() {
-            if (streamActive) {
-                document.getElementById('stream-status').innerHTML =
-                    '<span class="error">Stream error - trying to reconnect...</span>';
-                // Автоматическая перезагрузка потока при ошибке
-                setTimeout(startStream, 2000);
-            }
-        };
        
         document.getElementById('video-stream').onload = function() {
             if (streamActive) {

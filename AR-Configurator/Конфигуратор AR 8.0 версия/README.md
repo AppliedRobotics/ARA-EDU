@@ -28,6 +28,7 @@
 - Alter Linux
 - RedOS
 - Calculate Linux
+- MOS OS
 
 ## Установка Конфигуратора
 ### Windows
