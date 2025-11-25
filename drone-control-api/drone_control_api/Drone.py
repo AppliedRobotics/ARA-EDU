@@ -302,13 +302,6 @@ class Drone:
             raise Exception("height cant be None or not float")
         return self.__send_wait_method_temp("setHeight", height)
     
-    def setMagnet(self, val: bool = None):
-        try:
-            val = bool(val)
-        except:
-            raise Exception("height cant be None or not bool")
-        return self.__send_wait_method_temp("setMagnet", val)
-    
     def setDiod(self, r: float = None, g: float = None, b: float = None):
         try:
             r = float(r)
@@ -325,4 +318,27 @@ class Drone:
         except:
             raise Exception("power;freq cant be None or not float")
         return self.__send_wait_method_temp("setBeeper", [power, freq])    
+    
+    def setShoot(self, time_shoot: float = None):
+        try:
+            time_shoot = float(time_shoot)
+        except:
+            raise Exception("time_shoot cant be None or not float")
+        return self.__send_wait_method_temp("setShoot", time_shoot)
+    
+    def setServoAngle(self, angle: float = None):
+        try:
+            angle = float(angle)
+        except:
+            raise Exception("angle cant be None or not float")
+        return self.__send_wait_method_temp("setServoAngle", angle)  
+    
+    def setMagnet(self, val: bool = None):
+        try:
+            val = bool(val)
+        except:
+            raise Exception("val cant be None or not bool")
+        return self.__send_wait_method_temp("setMagnet", val)
+    
         
+    
