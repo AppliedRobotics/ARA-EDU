@@ -71,19 +71,6 @@ def aruco_reg():
                     print("Выравнивание на маркер с id 0 завершено")
                     break
 
-def marker_priority():
-    client.setVelXYYaw(0.0, 0.0, 0.5)
-    while True:
-        marker_info = client.getArucos()
-        if marker_info:
-            if len(marker_info) == 3:
-                client.setVelXYYaw(0.0, 0.0, 0.0)
-                marker_priority_list = [marker['id'] for marker in marker_info]
-                marker_priority_list.sort()
-                time.sleep(0.5)
-                return marker_priority_list
-
-
 def constrain (value, threshold):
     if value > threshold:
         value = threshold
@@ -106,11 +93,7 @@ search_aruco(marker_id=0)
 print("Выравнивание на маркер с id 0")
 aruco_reg()
 
-print("Поиск трех маркеров")
-marker_priority_list = marker_priority()
-print("Порядок стрельбы по маркерам", marker_priority_list)
-
-for i in marker_priority_list:
+for i in range(1, 3):
     print("Поиск маркера с id", i)
     search_aruco(marker_id=i, calculating_angle=True, shoot=True)
 
